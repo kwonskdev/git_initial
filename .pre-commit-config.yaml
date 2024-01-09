@@ -1,4 +1,22 @@
 repos:
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint -sn
+                      --disable=all
+                      --enable=missing-docstring,empty-docstring,parameter_documentation
+                      --load-plugins=pylint.extensions.docparams
+                      --accept-no-param-doc=false
+                      --accept-no-raise-doc=false
+                      --accept-no-result-doc=false
+                      --accept-no-yields-doc=false
+                      --docstring-min-length=10
+                      --default-docstring-type=numpy
+        language: system
+        exclude: check_commit_template.py
+        types: [python]
+        
   - repo: https://github.com/psf/black
     rev: 23.3.0
     hooks:
